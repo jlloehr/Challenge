@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;//just import what i need
+import java.sql.SQLException;
 
 //This program parses through a csv file, submitting all valid records into a SQLite database, and all invalid records to a csv file.
 //It also finally provides statistics to a log file.
@@ -63,6 +63,7 @@ public class SQLiteFromCSV {
 		      System.out.println("An error occurred.");
 		      e.printStackTrace();
 		    }
+		
 		//setup SQLite connection
 		try {
 			connection = DriverManager.getConnection(JDBC_CONNECTION_URL);
@@ -80,8 +81,9 @@ public class SQLiteFromCSV {
                 // use comma as separator            	
                 row = line.split(cvsSplitBy);
                 
-                //since there will be a comma in row E, it will be split into 11 entries instead of 10  
-                if(row.length > 0 && row.length == validColumnNumber +1 ) {                	
+                //since there will be a comma in row E, it will be split into 11 entries instead of 10. 
+		//So a valid entry will have a row of length 11
+                if(row.length == validColumnNumber+1 ) {                	
                 	validRows++;
                 	
                 	try {                       		
@@ -92,7 +94,7 @@ public class SQLiteFromCSV {
                 		statement.setString(2, row[1]);
                 		statement.setString(3, row[2]);
                 		statement.setString(4, row[3]);
-                		//For the E column, joining indexes 4 and 5 back together because the E column contains a comma was split into 2  
+                		//For the E column, join indexes 4 and 5 back together because the E column contains a comma and was split into 2 indexes  
                 		statement.setString(5, (row[4]+","+row[5]));
                 		statement.setString(6, row[6]);
                 		statement.setString(7, row[7]);
