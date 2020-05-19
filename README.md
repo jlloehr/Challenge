@@ -1,9 +1,7 @@
 # Coding Challenge
-The purpose of this application is to consume a CSV file, parse the data, and insert valid
-records into a SQLite database. 
-Furthermore, all invalid records that do not contain entries for each column (from A-J) will be written to a csv file. 
-Finally, a .log file will be created that contains statistics including the total number of records received, as well as
-the number of successful and failed records.
+The purpose of this application is to consume a CSV file (specifically the Challenge.csv file in this repository), parse the data, and insert valid records into a SQLite database. 
+Furthermore, all invalid records that do not contain entries for each column (from A-J) will be written to a csv file called challenge-bad.csv. 
+Finally, a challenge.log file will be created that contains statistics including the total number of records received, as well as the number of successful and failed records.
 
 
 
